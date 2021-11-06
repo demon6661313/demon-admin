@@ -1,13 +1,23 @@
 <template>
-  <Header />
+  <Header @toggleSidebar="toggleSidebar()" />
+  <Sidebar v-if="sidebar" />
   <router-view />
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 import Header from "./components/Header.vue";
+import Sidebar from "./components/Sidebar.vue";
 export default {
-  components: { Header },
-  setup() {},
+  components: { Header, Sidebar },
+  setup() {
+    const sidebar = ref(true);
+    const toggleSidebar = () => {
+      sidebar.value = !sidebar.value;
+    };
+
+    return { sidebar, toggleSidebar };
+  },
 };
 </script>
 
@@ -18,8 +28,8 @@ export default {
   box-sizing: border-box;
 }
 :root {
-  --main-bg: #1e293b;
-  --parts-bg: #0f172a;
+  --main-bg: #334155;
+  --parts-bg: #27272a;
   --hover-bg: #64748b;
   --input-bg: #334155;
   --info-bg: #1d4ed8;

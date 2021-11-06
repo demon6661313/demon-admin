@@ -1,14 +1,22 @@
 <template>
   <div id="header">
     <div class="wrapper">
-      <span class="menuBtn btn material-icons">menu</span>
+      <span @click="toggleSidebar()" class="menuBtn btn material-icons"
+        >menu</span
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  setup() {},
+  setup(props, { emit }) {
+    const toggleSidebar = () => {
+      emit("toggleSidebar");
+    };
+
+    return { toggleSidebar };
+  },
 };
 </script>
 
